@@ -1,8 +1,6 @@
 import React, { useContext, Suspense, useEffect, lazy } from 'react'
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import routes from '../routes'
-
-import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
 import Main from '../containers/Main'
 import ThemedSuspense from '../components/ThemedSuspense'
@@ -23,9 +21,9 @@ function Layout() {
     <div
       className={`flex min-h-screen bg-gray-50 dark:bg-gray-900 ${isSidebarOpen && 'overflow-hidden'}`}
     >
-      <Sidebar />
+      {/* <Sidebar /> */}
 
-      <div className="flex flex-col flex-1 w-full">
+      <div className="flex flex-col flex-1 w-full h-full">
         <Header />
         <Main>
           <Suspense fallback={<ThemedSuspense />}>

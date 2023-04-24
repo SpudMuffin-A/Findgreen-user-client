@@ -1,4 +1,9 @@
 import { ReactComponent as ButtonsIcon } from './buttons.svg'
+import { ReactComponent as ProfileIcon } from './profile.svg'
+import { ReactComponent as HistoryIcon } from './history.svg'
+import { ReactComponent as Booking } from './booking.svg'
+import { ReactComponent as WalletIcon } from './payment.svg'
+import { ReactComponent as FavouriteIcon } from './favourite.svg'
 import { ReactComponent as CardsIcon } from './cards.svg'
 import { ReactComponent as ChartsIcon } from './charts.svg'
 import { ReactComponent as FormsIcon } from './forms.svg'
@@ -29,6 +34,11 @@ import { ReactComponent as OutlineLogoutIcon } from './outlineLogout.svg'
 
 export {
   ButtonsIcon,
+  Booking,
+  ProfileIcon,
+  HistoryIcon,
+  WalletIcon,
+  FavouriteIcon,
   CardsIcon,
   ChartsIcon,
   FormsIcon,

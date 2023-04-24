@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
 
   const refreshTokens = useCallback(
     () => {
-      return axios.post(`${apiUrl}/v1/auth/refresh-tokens`, {})
+      return axios.post(`/v1/auth/refresh-tokens`, {})
       .then(response => {
         setAccessToken(response.data.token)
         setUser(response.data.user)
@@ -105,7 +105,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       const login = (email, password) => {
-        return axios.post(`${apiUrl}/v1/auth/login`, {
+        return axios.post(`${apiUrl}/v1/users/login`, {
           email: email,
           password: password
         })
@@ -114,6 +114,7 @@ export const AuthProvider = ({ children }) => {
           setUser(response.data.user)
           startSilentRefresh()
         })
+        // .catch(err => {console.log(err)})
       }
 
       const logout = () => {
@@ -127,14 +128,28 @@ export const AuthProvider = ({ children }) => {
       }
 
       const forgotPassword = (email) => {
-        return axios.post(`${apiUrl}/v1/auth/forgot-password`, {
+        return axios.post(`${apiUrl}/v1/users/forgotPassword`, {
           email: email
+        })
+        .then(response => {
+          sessionStorage.setItem('email', email);
         })
       }
 
-      const resetPassword = (password, resetToken) => {
-        return axios.post(`${apiUrl}/v1/auth/reset-password?token=${resetToken}`, {
-          password: password
+      const verifyOtp = (obj) => {
+        return axios.post(`${apiUrl}/v1/users/forgotPassword/verifyotp`, obj)
+      }
+
+      const resendOtp = (obj) => {
+        console.log("api resend field", obj)
+        return axios.post(`${apiUrl}/v1/users/register/resendOTP`, obj)
+      }
+
+      const resetPassword = (email, currentPassword, newPassword) => {
+        return axios.post(`${apiUrl}/v1/users/resetPassword`, {
+          email: email,
+          currentPassword: currentPassword,
+          newPassword: newPassword
         })
       }
 
@@ -151,6 +166,8 @@ export const AuthProvider = ({ children }) => {
         forgotPassword,
         resetPassword,
         verifyEmail,
+        verifyOtp,
+        resendOtp,
       })
     },
     [user, startSilentRefresh]

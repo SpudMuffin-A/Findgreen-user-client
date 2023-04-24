@@ -1,0 +1,37 @@
+:root {
+
+    /* Colors: */
+    --unnamed-color-3b7cff: #3B7CFF;
+    --unnamed-color-c223e9: #C223E9;
+    --unnamed-color-464366: #464366;
+    --unnamed-color-ffffff: #FFFFFF;
+    --unnamed-color-292929: #292929;
+    
+    /* Font/text values */
+    --unnamed-font-family-sora: Sora;
+    --unnamed-font-style-normal: normal;
+    --unnamed-font-weight-normal: normal;
+    --unnamed-font-size-15: 15px;
+    --unnamed-character-spacing-0: 0px;
+    --unnamed-line-spacing-19: 19px;
+    }
+    
+    /* Character Styles */
+    .unnamed-character-style-1 {
+    font-family: var(--unnamed-font-family-sora);
+    font-style: var(--unnamed-font-style-normal);
+    font-weight: var(--unnamed-font-weight-normal);
+    font-size: var(--unnamed-font-size-15);
+    line-height: var(--unnamed-line-spacing-19);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-292929);
+    }
+
+.forgot-pass {
+    top: 485px;
+    left: 1122px;
+    width: 128px;
+    height: 18px;
+    float: right;
+    opacity: 0.75;
+}

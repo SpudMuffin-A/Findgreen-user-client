@@ -8,6 +8,8 @@ import PageTitle from '../components/Typography/PageTitle'
 import { ChatIcon, CartIcon, MoneyIcon, PeopleIcon } from '../icons'
 import RoundIcon from '../components/RoundIcon'
 import response from '../utils/demo/tableData'
+import Homescreen from "../components/Home/Homescreen";
+
 import {
   TableBody,
   TableContainer,
@@ -31,6 +33,9 @@ import {
 function Dashboard() {
   const [page, setPage] = useState(1)
   const [data, setData] = useState([])
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [apiData, setApiData] = useState([]);
+  const [search, setSearch] = useState("");
 
   // pagination setup
   const resultsPerPage = 10
@@ -39,6 +44,21 @@ function Dashboard() {
   // pagination change control
   function onPageChange(p) {
     setPage(p)
+  }
+
+  function handleInputChange(e) {
+    const Timer = setTimeout(() => {
+      setSearch(e.target.value);
+      clearTimeout(Timer);
+    }, 1000);
+  }
+
+  function openModal() {
+    setIsModalOpen(true);
+  }
+
+  function closeModal() {
+    setIsModalOpen(false);
   }
 
   // on page change, load new sliced data
@@ -50,7 +70,11 @@ function Dashboard() {
   return (
     <>
       <PageTitle>Dashboard</PageTitle>
-
+      <Homescreen
+            openModal={openModal}
+            handleInputChange={handleInputChange}
+            apiData={apiData}
+          />
       {/* <!-- Cards --> */}
       <div className="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
         <InfoCard title="Total clients" value="6389">
@@ -152,6 +176,7 @@ function Dashboard() {
         </ChartCard>
       </div>
     </>
+    
   )
 }
 

@@ -13,6 +13,7 @@ const Buttons = lazy(() => import('../pages/Buttons'))
 const Modals = lazy(() => import('../pages/Modals'))
 const Tables = lazy(() => import('../pages/Tables'))
 const Page404 = lazy(() => import('../pages/404'))
+const ForgotPassword = lazy(() => import('../pages/ForgotPassword'))
 const Blank = lazy(() => import('../pages/Blank'))
 
 /**
@@ -29,6 +30,10 @@ const routes = [
   {
     path: '/profile',
     component: Profile,
+  },
+  {
+    path: '/forgot-password',
+    component: ForgotPassword,
   },
   {
     path: '/users',

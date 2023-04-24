@@ -1,5 +1,8 @@
-import React, { useContext, useState } from 'react'
-import { SidebarContext } from '../context/SidebarContext'
+import React, { useContext, useState } from "react";
+import { VscLocation } from "react-icons/vsc";
+import { Link } from "react-router-dom";
+import { SidebarContext } from "../context/SidebarContext";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import {
   SearchIcon,
   MoonIcon,
@@ -9,48 +12,52 @@ import {
   OutlinePersonIcon,
   OutlineCogIcon,
   OutlineLogoutIcon,
-} from '../icons'
-import { Avatar, Badge, Input, Dropdown, DropdownItem, WindmillContext } from '@windmill/react-ui'
+  ProfileIcon,
+} from "../icons";
+import {
+  Avatar,
+  Badge,
+  Button,
+  Input,
+  Dropdown,
+  DropdownItem,
+  WindmillContext,
+} from "@windmill/react-ui";
+import { useHistory } from "react-router-dom";
 
 function Header() {
-  const { mode, toggleMode } = useContext(WindmillContext)
-  const { toggleSidebar } = useContext(SidebarContext)
+  const history = useHistory();
+  const { mode, toggleMode } = useContext(WindmillContext);
+  const { toggleSidebar } = useContext(SidebarContext);
 
-  const [isNotificationsMenuOpen, setIsNotificationsMenuOpen] = useState(false)
-  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false)
+  const [isNotificationsMenuOpen, setIsNotificationsMenuOpen] = useState(false);
+  const [isLocationMenuOpen, setIsLocationMenuOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   function handleNotificationsClick() {
-    setIsNotificationsMenuOpen(!isNotificationsMenuOpen)
+    setIsNotificationsMenuOpen(!isNotificationsMenuOpen);
   }
-
+  function handleLocationClick() {
+    setIsLocationMenuOpen(!isLocationMenuOpen);
+  }
   function handleProfileClick() {
-    setIsProfileMenuOpen(!isProfileMenuOpen)
+    setIsProfileMenuOpen(!isProfileMenuOpen);
   }
+ 
 
   return (
-    <header className="z-40 py-4 bg-white shadow-bottom dark:bg-gray-800">
-      <div className="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
-        {/* <!-- Mobile hamburger --> */}
-        <button
-          className="p-1 mr-5 -ml-1 rounded-md lg:hidden focus:outline-none focus:shadow-outline-purple"
-          onClick={toggleSidebar}
-          aria-label="Menu"
-        >
-          <MenuIcon className="w-6 h-6" aria-hidden="true" />
-        </button>
-        {/* <!-- Search input --> */}
-        <div className="flex justify-center flex-1 lg:mr-32">
-          <div className="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
-            <div className="absolute inset-y-0 flex items-center pl-2">
-              <SearchIcon className="w-4 h-4" aria-hidden="true" />
-            </div>
-            <Input
-              className="pl-8 text-gray-700"
-              placeholder="Search for projects"
-              aria-label="Search"
-            />
+    <header
+      className="z-40 py-4 bg-white shadow-bottom dark:bg-gray-800"
+      style={{ height: "8vh" }}
+    >
+      <div className="container flex items-center justify-between h-full px-6 mx-auto text-black-600 dark:text-black-300">
+        <aside className="hidden w-full lg:block">
+          <div className="w-11/12">
+            <Link to="/app/dashboard" className="text-xl font-bold text-gray-800">
+              Find Green
+            </Link>
           </div>
-        </div>
+        </aside>
         <ul className="flex items-center flex-shrink-0 space-x-6">
           {/* <!-- Theme toggler --> */}
           <li className="flex">
@@ -88,31 +95,53 @@ function Header() {
               onClose={() => setIsNotificationsMenuOpen(false)}
             >
               <DropdownItem tag="a" href="#" className="justify-between">
-                <span>Messages</span>
-                <Badge type="danger">13</Badge>
+                <span>
+                  You received a new user sign-up by Find Green{" "}
+                  <p style={{ color: "#7B7B7B" }}>20 mins ago</p>
+                </span>
+                <KeyboardArrowRightIcon />
               </DropdownItem>
+              <hr />
               <DropdownItem tag="a" href="#" className="justify-between">
-                <span>Sales</span>
-                <Badge type="danger">2</Badge>
+                <span>
+                  Booking cancelled successfully from Shell Recharge
+                  <p style={{ color: "#7B7B7B" }}>20 mins ago</p>
+                </span>
+                <KeyboardArrowRightIcon />
               </DropdownItem>
-              <DropdownItem onClick={() => alert('Alerts!')}>
-                <span>Alerts</span>
+              <hr />
+              <DropdownItem tag="a" href="#" className="justify-between">
+                <span>
+                  Payment of Rs.400 added successfully to your Find Green Wallet
+                  <p style={{ color: "#7B7B7B" }}>20 mins ago</p>
+                </span>
+                <KeyboardArrowRightIcon />
               </DropdownItem>
+              <hr />
+              <DropdownItem tag="a" href="#" className="justify-between">
+                <u>
+                  <span style={{ color: "#7B7B7B" }}>
+                    View all Notification
+                  </span>
+                </u>
+              </DropdownItem>
+              {/* <DropdownItem onClick={() => alert("Alerts!")}>
+                <span><center>Alerts</center></span>
+              </DropdownItem> */}
             </Dropdown>
           </li>
           {/* <!-- Profile menu --> */}
           <li className="relative">
             <button
-              className="rounded-full focus:shadow-outline-purple focus:outline-none"
+              // className="rounded-full focus:shadow-outline-black focus:outline-none"
               onClick={handleProfileClick}
               aria-label="Account"
               aria-haspopup="true"
             >
-              <Avatar
-                className="align-middle"
-                src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
-                alt=""
+              <ProfileIcon
+                className="w-5 h-5 "
                 aria-hidden="true"
+                style={{ fontSize: "2em" }}
               />
             </button>
             <Dropdown
@@ -121,15 +150,21 @@ function Header() {
               onClose={() => setIsProfileMenuOpen(false)}
             >
               <DropdownItem tag="a" href="#">
-                <OutlinePersonIcon className="w-4 h-4 mr-3" aria-hidden="true" />
-                <span>Profile</span>
+                <OutlinePersonIcon
+                  className="w-4 h-4 mr-3"
+                  aria-hidden="true"
+                />
+                <span>My Profile</span>
               </DropdownItem>
               <DropdownItem tag="a" href="#">
                 <OutlineCogIcon className="w-4 h-4 mr-3" aria-hidden="true" />
                 <span>Settings</span>
               </DropdownItem>
-              <DropdownItem onClick={() => alert('Log out!')}>
-                <OutlineLogoutIcon className="w-4 h-4 mr-3" aria-hidden="true" />
+              <DropdownItem onClick={() => alert("Log out!")}>
+                <OutlineLogoutIcon
+                  className="w-4 h-4 mr-3"
+                  aria-hidden="true"
+                />
                 <span>Log out</span>
               </DropdownItem>
             </Dropdown>
@@ -137,7 +172,9 @@ function Header() {
         </ul>
       </div>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;
+
+
