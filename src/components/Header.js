@@ -24,6 +24,7 @@ import {
   WindmillContext,
 } from "@windmill/react-ui";
 import { useHistory } from "react-router-dom";
+import Sidenav from "../components/Home/Sidenav";
 
 function Header() {
   const history = useHistory();
@@ -37,9 +38,7 @@ function Header() {
   function handleNotificationsClick() {
     setIsNotificationsMenuOpen(!isNotificationsMenuOpen);
   }
-  function handleLocationClick() {
-    setIsLocationMenuOpen(!isLocationMenuOpen);
-  }
+
   function handleProfileClick() {
     setIsProfileMenuOpen(!isProfileMenuOpen);
   }
@@ -50,10 +49,11 @@ function Header() {
       className="z-40 py-4 bg-white shadow-bottom dark:bg-gray-800"
       style={{ height: "8vh" }}
     >
+      
       <div className="container flex items-center justify-between h-full px-6 mx-auto text-black-600 dark:text-black-300">
         <aside className="hidden w-full lg:block">
           <div className="w-11/12">
-            <Link to="/app/dashboard" className="text-xl font-bold text-gray-800">
+            <Link to="/app/dashboard" className={`text-xl font-bold ${mode === 'dark' ? 'text-white' : 'text-gray-800'}`}>
               Find Green
             </Link>
           </div>
@@ -171,7 +171,9 @@ function Header() {
           </li>
         </ul>
       </div>
+      <Sidenav mode={mode}/>
     </header>
+    
   );
 }
 

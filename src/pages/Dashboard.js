@@ -5,10 +5,13 @@ import ChartCard from '../components/Chart/ChartCard'
 import { Doughnut, Line } from 'react-chartjs-2'
 import ChartLegend from '../components/Chart/ChartLegend'
 import PageTitle from '../components/Typography/PageTitle'
-import { ChatIcon, CartIcon, MoneyIcon, PeopleIcon } from '../icons'
+import { ChatIcon, ClockIcon, MoneyIcon, PeopleIcon, ChargingStation } from '../icons'
 import RoundIcon from '../components/RoundIcon'
 import response from '../utils/demo/tableData'
 import Homescreen from "../components/Home/Homescreen";
+import axios from "axios";
+import { Bar } from 'react-chartjs-2';
+
 
 import {
   TableBody,
@@ -28,6 +31,11 @@ import {
   lineOptions,
   doughnutLegends,
   lineLegends,
+  barOptions,
+  barLegends,
+  lineOptions1,
+  barChartOptions,
+  BarChart
 } from '../utils/demo/chartsData'
 
 function Dashboard() {
@@ -36,6 +44,14 @@ function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [apiData, setApiData] = useState([]);
   const [search, setSearch] = useState("");
+  const [totalStations, setTotalStations] = useState([]);
+
+  useEffect(() => {
+    axios.get("172.174.202.43/find_green_admin_portal/v1/station/dashboard/").then((response) => {
+        setTotalStations(response.data.stations['Total Charging Stations']);
+    });
+    
+  }, []);
 
   // pagination setup
   const resultsPerPage = 10
@@ -61,121 +77,88 @@ function Dashboard() {
     setIsModalOpen(false);
   }
 
+
   // on page change, load new sliced data
   // here you would make another server request for new data
   useEffect(() => {
     setData(response.slice((page - 1) * resultsPerPage, page * resultsPerPage))
   }, [page])
 
+  
+
   return (
+    <main className="flex items-center sm:p-12 md:w-11/14">
+      <div className="w-full" style={{ marginRight: "0px", marginLeft: "100px" }}>
     <>
-      <PageTitle>Dashboard</PageTitle>
+      {/* <PageTitle>Dashboard</PageTitle> */}
+      <span className="text-2xl font-semibold" style={{marginBottom: "100px"}}>Dashboard</span>
+
       <Homescreen
             openModal={openModal}
             handleInputChange={handleInputChange}
             apiData={apiData}
           />
       {/* <!-- Cards --> */}
-      <div className="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-        <InfoCard title="Total clients" value="6389">
+      <div className="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-3" style={{marginTop: "10px"}}>
+        <InfoCard title="Total Charging Stations" value="28" >
           <RoundIcon
-            icon={PeopleIcon}
+            icon={ChargingStation}
+            
             iconColorClass="text-orange-500 dark:text-orange-100"
             bgColorClass="bg-orange-100 dark:bg-orange-500"
-            className="mr-4"
+            className="mr-4 "
+            
           />
         </InfoCard>
 
-        <InfoCard title="Account balance" value="$ 46,760.89">
+        <InfoCard title="Total Charging Hours" value="892">
           <RoundIcon
-            icon={MoneyIcon}
+            icon={ClockIcon}
             iconColorClass="text-green-500 dark:text-green-100"
             bgColorClass="bg-green-100 dark:bg-green-500"
             className="mr-4"
           />
         </InfoCard>
 
-        <InfoCard title="New sales" value="376">
+        <InfoCard title="Active Users" value="376">
           <RoundIcon
-            icon={CartIcon}
+            icon={PeopleIcon}
             iconColorClass="text-blue-500 dark:text-blue-100"
             bgColorClass="bg-blue-100 dark:bg-blue-500"
             className="mr-4"
           />
         </InfoCard>
 
-        <InfoCard title="Pending contacts" value="35">
-          <RoundIcon
-            icon={ChatIcon}
-            iconColorClass="text-teal-500 dark:text-teal-100"
-            bgColorClass="bg-teal-100 dark:bg-teal-500"
-            className="mr-4"
-          />
-        </InfoCard>
       </div>
-
-      <TableContainer>
-        <Table>
-          <TableHeader>
-            <tr>
-              <TableCell>Client</TableCell>
-              <TableCell>Amount</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>Date</TableCell>
-            </tr>
-          </TableHeader>
-          <TableBody>
-            {data.map((user, i) => (
-              <TableRow key={i}>
-                <TableCell>
-                  <div className="flex items-center text-sm">
-                    <Avatar className="hidden mr-3 md:block" src={user.avatar} alt="User image" />
-                    <div>
-                      <p className="font-semibold">{user.name}</p>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">{user.job}</p>
-                    </div>
-                  </div>
-                </TableCell>
-                <TableCell>
-                  <span className="text-sm">$ {user.amount}</span>
-                </TableCell>
-                <TableCell>
-                  <Badge type={user.status}>{user.status}</Badge>
-                </TableCell>
-                <TableCell>
-                  <span className="text-sm">{new Date(user.date).toLocaleDateString()}</span>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        <TableFooter>
-          <Pagination
-            totalResults={totalResults}
-            resultsPerPage={resultsPerPage}
-            label="Table navigation"
-            onChange={onPageChange}
-          />
-        </TableFooter>
-      </TableContainer>
-
-      <PageTitle>Charts</PageTitle>
+    <div className="flex flex-col mt-8 md:grid-cols-2 xl:grid-cols-2">
+      <PageTitle style={{marginTop: "100px"}}>Find Green Statistics</PageTitle>
       <div className="grid gap-6 mb-8 md:grid-cols-2">
-        <ChartCard title="Revenue">
+      <ChartCard title="Revenue">
+          {/* <Line {...barOptions} />
+          <ChartLegend legends={barLegends} /> */}
+          <Bar {...barChartOptions} />
+          <ChartLegend legends={barLegends} />
+        </ChartCard>
+        <ChartCard title="Connectors Used">
           <div className="flex justify-center w-full">
             <div className="w-1/2">
               <Doughnut {...doughnutOptions} />
             </div>
           </div>
-          <ChartLegend legends={doughnutLegends} />
-        </ChartCard>
-
-        <ChartCard title="Traffic">
-          <Line {...lineOptions} />
-          <ChartLegend legends={lineLegends} />
+          {/* <ChartLegend legends={doughnutLegends} /> */}
+          </ChartCard>
+        </div>
+        <div className="grid gap-6 mb-8 " >  
+        
+        <ChartCard title="Total Charging Customers">
+          <Line {...lineOptions1} />
+          {/* <ChartLegend legends={barLegends} /> */}
         </ChartCard>
       </div>
+    </div>
     </>
+    </div>
+    </main>
     
   )
 }
