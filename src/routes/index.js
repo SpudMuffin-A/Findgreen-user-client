@@ -15,6 +15,9 @@ const Tables = lazy(() => import('../pages/Tables'))
 const Page404 = lazy(() => import('../pages/404'))
 const ForgotPassword = lazy(() => import('../pages/ForgotPassword'))
 const Blank = lazy(() => import('../pages/Blank'))
+const ChargingStation = lazy(() => import('../pages/ChargingStation'))
+const AddStation = lazy(() => import('../pages/AddStation'))
+const Reports = lazy(() => import('../pages/Reports'))
 
 /**
  * ⚠ These are internal routes!
@@ -39,6 +42,14 @@ const routes = [
     path: '/users',
     component: Users,
   },
+  {
+    path: '/chargingStation',
+    component: ChargingStation,
+  },
+  {
+    path: '/addStation',
+    component: AddStation,
+  },
  /* {
     path: '/billing',
     component: Billing,
@@ -50,6 +61,10 @@ const routes = [
   {
     path: '/dashboard', // the url
     component: Dashboard, // view rendered
+  },
+  {
+    path: '/reports', // the url
+    component: Reports, // view rendered
   },
   {
     path: '/forms',

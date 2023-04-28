@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Input } from "@windmill/react-ui";
 import { SearchIcon } from "../../icons/index";
-import Sidenav from "./Sidenav";
 import { VscFilter } from "react-icons/vsc";
 import CardsForm from "./CardsForm";
 
@@ -12,10 +11,9 @@ export default function Homescreen(props) {
     <div className="w-full">
       <div className="relative w-full max-w-xl mr-10">
         <div className="flex items-center">
-          <Sidenav />
         </div>
 
-        <div>
+        {/* <div>
           <Input
             style={{ marginLeft: "1rem", marginTop: "-75px" }}
             className="pl-8 text-gray-700"
@@ -36,15 +34,15 @@ export default function Homescreen(props) {
               onClick={openModal}
             />
           </div>
-        </div>
+        </div> */}
       </div>
-      <div className="mt-2" style={{ overflow: "auto" ,height:'70vh'}}>
+      {/* <div className="mt-2" style={{ overflow: "auto" ,height:'70vh'}}>
         {apiData && apiData.length > 0
           ? apiData.map((data, index) => {
               return <CardsForm data={data} />;
             })
           : null}
-      </div>
+      </div> */}
     </div>
   );
 }

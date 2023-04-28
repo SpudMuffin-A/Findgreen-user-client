@@ -18,13 +18,19 @@ import ListItemText from "@mui/material/ListItemText";
 import {
 HomeIcon,  
 BellIcon,
+Booking,
   HistoryIcon,
   OutlineLogoutIcon,
   FormsIcon,
   SearchIcon,
   WalletIcon,
+  FavouriteIcon,
+  UserIcon,
+  RoleIcon,
+  ReportIcon,
 } from "../../icons";
 import { useHistory } from 'react-router-dom'
+import Header from "../Header";
 
 const drawerWidth = 240;
 
@@ -47,33 +53,8 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   })
 );
 
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(["margin", "width"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: `${drawerWidth}px`,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
 
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  justifyContent: "flex-end",
-}));
-
-export default function Sidenav() {
+export default function Sidenav(props) {
     const history =useHistory()
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -83,49 +64,33 @@ export default function Sidenav() {
     setOpen(true);
   };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  // const handleDrawerClose = () => {
+  //   setOpen(false);
+  // };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <div className={` ${props.mode === 'dark' ? 'text-white' : 'text-gray-800'}`}>
+
+    <Box sx={{ display: "flex" }} >
       <CssBaseline />
-      {/* <AppBar position="fixed" open={open}> */}
-      <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={handleDrawerOpen}
-          edge="start"
-          sx={{ mr: 2, ...(open && { display: "none" }) }}
-        >
-          <MenuIcon />
-        </IconButton>
-      </Toolbar>
-      {/* </AppBar> */}
+
       <Drawer
+      
         sx={{
           width: drawerWidth,
           flexShrink: 0,
+          marginTop: "64px",
           "& .MuiDrawer-paper": {
             width: drawerWidth,
+            marginTop: "66px",
             boxSizing: "border-box",
           },
         }}
         variant="persistent"
         anchor="left"
-        open={open}
+        open={{handleDrawerOpen}}
+        
       >
-        <DrawerHeader>
-          <h1> Find Green</h1>
-          <IconButton onClick={handleDrawerClose}>
-            {/* {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )} */}
-          </IconButton>
-        </DrawerHeader>
         <Divider />
         <List>
           <ListItem disablePadding onClick={()=>{history.push({pathname:"/app/dashboard"})}}>
@@ -136,18 +101,18 @@ export default function Sidenav() {
               <ListItemText primary="Dashboard" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding onClick={()=>{history.push({pathname:"/app/MyBooking"})}}>
+          <ListItem disablePadding onClick={()=>{history.push({pathname:"/app/chargingStation"})}}>
             <ListItemButton>
               <ListItemIcon>
-                {/* <Booking /> */}
+                <Booking />
               </ListItemIcon>
               <ListItemText primary="Charging Station Management" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding onClick={()=>{history.push({pathname:"/app/ChargingHistory"})}}>
+          <ListItem disablePadding onClick={()=>{history.push({pathname:"/app/reports"})}}>
             <ListItemButton>
               <ListItemIcon>
-                <FormsIcon />
+                <ReportIcon />
               </ListItemIcon>
               <ListItemText primary="Reports" />
             </ListItemButton>
@@ -163,7 +128,7 @@ export default function Sidenav() {
           <ListItem disablePadding onClick={()=>{history.push({pathname:"/app/Favouritestation"})}}>
             <ListItemButton>
               <ListItemIcon>
-                {/* <FavouriteIcon /> */}
+                <UserIcon />
               </ListItemIcon>
               <ListItemText primary="User Management" />
             </ListItemButton>
@@ -171,7 +136,7 @@ export default function Sidenav() {
           <ListItem disablePadding onClick={()=>{history.push({pathname:"/app/Favouritestation"})}}>
             <ListItemButton>
               <ListItemIcon>
-                {/* <FavouriteIcon /> */}
+                <RoleIcon />
               </ListItemIcon>
               <ListItemText primary="Role Management" />
             </ListItemButton>
@@ -179,12 +144,12 @@ export default function Sidenav() {
           <ListItem disablePadding onClick={()=>{history.push({pathname:"/app/Favouritestation"})}}>
             <ListItemButton>
               <ListItemIcon>
-                {/* <FavouriteIcon /> */}
+                <FavouriteIcon />
               </ListItemIcon>
               <ListItemText primary="Support and Feedback" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={()=>{history.push({pathname:"/"})}}>
             <ListItemButton>
               <ListItemIcon>
                 <OutlineLogoutIcon style={{width:"35px"}} />
@@ -194,11 +159,12 @@ export default function Sidenav() {
           </ListItem>
         </List>
       </Drawer>
-      <Main open={open}>
-        <DrawerHeader />
+      <Main open={open} sx={{ marginTop: 64 }}>
+        {/* <DrawerHeader /> */}
         
       </Main>
       
     </Box>
+    </div>
   );
 }

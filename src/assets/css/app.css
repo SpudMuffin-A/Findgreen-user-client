@@ -1,4 +1,5 @@
-:root {
+body {
+    font-family: sans-serif, var(--unnamed-font-family-sora);
 
     /* Colors: */
     --unnamed-color-3b7cff: #3B7CFF;

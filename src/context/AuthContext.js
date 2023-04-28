@@ -16,30 +16,31 @@ export const AuthProvider = ({ children }) => {
 
   const refreshTokens = useCallback(
     () => {
-      return axios.post(`/v1/auth/refresh-tokens`, {})
-      .then(response => {
-        setAccessToken(response.data.token)
-        setUser(response.data.user)
-        return response
-      })
-      .catch(error => {
-        setUser(null)
-        setAccessToken(null)
-        return error
-      })
-    },
-    []
-  )
+    //   return axios.post(`/v1/users/refresh-tokens`, {})
+    //   .then(response => {
+    //     setAccessToken(response.data.token)
+    //     setUser(response.data.user)
+    //     return response
+    //   })
+    //   .catch(error => {
+    //     setUser(null)
+    //     setAccessToken(null)
+    //     return error
+    //   })
+    // },
+    // []
+    return {}
+    })
 
   const startSilentRefresh = useCallback(
     () => {
-      if(accessToken) {
-        const tokenExpires = moment(accessToken.expires)
-        const tokenMaxAge = tokenExpires.diff(moment().add(1, 'minutes'))
-        setTimeout(() => {
-          refreshTokens()
-        }, tokenMaxAge)
-      }
+    //   if(accessToken) {
+    //     const tokenExpires = moment(accessToken.expires)
+    //     const tokenMaxAge = tokenExpires.diff(moment().add(1, 'minutes'))
+    //     setTimeout(() => {
+    //       refreshTokens()
+    //     }, tokenMaxAge)
+    //   }
     },
     [accessToken, refreshTokens]
   )
@@ -71,12 +72,12 @@ export const AuthProvider = ({ children }) => {
     }
   }, [accessToken])
 
-  useEffect(() => {
-    refreshTokens()
-    .then(response => {
-      setLoaded(true)
-    })
-  }, [refreshTokens])
+  // useEffect(() => {
+  //   refreshTokens()
+  //   .then(response => {
+  //     setLoaded(true)
+  //   })
+  // }, [refreshTokens])
 
   useEffect(() => {
     startSilentRefresh()
@@ -173,9 +174,9 @@ export const AuthProvider = ({ children }) => {
     [user, startSilentRefresh]
   )
 
-  if(!isLoaded) {
-      return <ThemedSuspense />
-  }
+  // if(!isLoaded) {
+  //     return <ThemedSuspense />
+  // }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

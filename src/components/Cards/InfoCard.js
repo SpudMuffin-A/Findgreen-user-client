@@ -4,11 +4,12 @@ import { Card, CardBody } from '@windmill/react-ui'
 function InfoCard({ title, value, children: icon }) {
   return (
     <Card>
-      <CardBody className="flex items-center">
+      <CardBody className="flex text-lg items-center bg-black text-white font-bold" >
         {icon}
         <div>
-          <p className="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">{title}</p>
-          <p className="text-lg font-semibold text-gray-700 dark:text-gray-200">{value}</p>
+        <p className=" text-2xl font-bold font-medium text-white">{value}</p>
+          <p className="text-sm font-semibold text-white">{title}</p>
+          
         </div>
       </CardBody>
     </Card>
