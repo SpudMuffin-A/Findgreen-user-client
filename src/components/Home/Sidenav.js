@@ -125,7 +125,7 @@ export default function Sidenav(props) {
               <ListItemText primary="Notification Management" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding onClick={()=>{history.push({pathname:"/app/Favouritestation"})}}>
+          <ListItem disablePadding onClick={()=>{history.push({pathname:"/app/user-management"})}}>
             <ListItemButton>
               <ListItemIcon>
                 <UserIcon />
@@ -133,7 +133,7 @@ export default function Sidenav(props) {
               <ListItemText primary="User Management" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding onClick={()=>{history.push({pathname:"/app/Favouritestation"})}}>
+          <ListItem disablePadding onClick={()=>{history.push({pathname:"/app/role-management"})}}>
             <ListItemButton>
               <ListItemIcon>
                 <RoleIcon />
