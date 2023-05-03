@@ -45,10 +45,14 @@ function Dashboard() {
   const [apiData, setApiData] = useState([]);
   const [search, setSearch] = useState("");
   const [totalStations, setTotalStations] = useState([]);
+  const [activeUsers, setActiveUsers] = useState([]);
+  const [totalHours, setTotalHours] = useState(null);
 
   useEffect(() => {
-    axios.get("172.174.202.43/find_green_admin_portal/v1/station/dashboard/").then((response) => {
+    axios.get("http://172.174.202.43/find_green_admin_portal/v1/station/dashboard/").then((response) => {
         setTotalStations(response.data.stations['Total Charging Stations']);
+        setActiveUsers(response.data.users['Active Users']);
+        setTotalHours(response.data.bookings[0]['Total Charging Duration']);
     });
     
   }, []);
@@ -100,7 +104,7 @@ function Dashboard() {
           />
       {/* <!-- Cards --> */}
       <div className="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-3" style={{marginTop: "10px"}}>
-        <InfoCard title="Total Charging Stations" value="28" >
+        <InfoCard title="Total Charging Stations" value={totalStations} >
           <RoundIcon
             icon={ChargingStation}
             
@@ -111,7 +115,7 @@ function Dashboard() {
           />
         </InfoCard>
 
-        <InfoCard title="Total Charging Hours" value="892">
+        <InfoCard title="Total Charging Hours" value={totalHours}>
           <RoundIcon
             icon={ClockIcon}
             iconColorClass="text-green-500 dark:text-green-100"
@@ -120,7 +124,7 @@ function Dashboard() {
           />
         </InfoCard>
 
-        <InfoCard title="Active Users" value="376">
+        <InfoCard title="Active Users" value={activeUsers}>
           <RoundIcon
             icon={PeopleIcon}
             iconColorClass="text-blue-500 dark:text-blue-100"
