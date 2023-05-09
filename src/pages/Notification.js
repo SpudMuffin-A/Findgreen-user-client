@@ -2,8 +2,8 @@ import React from "react";
 import { Breadcrumbs, Typography, Box,Tab,TabPanel,value } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import AddStationForm from "../components/Forms/AddStationForm";
-export default function AddStation() {
+import NotificationForm from "../components/Forms/NotificationForm";
+export default function Notification() {
   const history = useHistory();
   return (
     <main className="flex items-center sm:p-12 md:w-11/14">
@@ -12,12 +12,9 @@ export default function AddStation() {
           <Link underline="hover" color="inherit" href="/app/dashboard">
             Home
           </Link>
-          <Link underline="hover" color="inherit" href="/app/chargingStation">
-          <Typography color="text.primary">Charging Station Management</Typography>
-          </Link>
-          <Typography color="text.primary">Add Charging Station</Typography>
+          <Typography color="text.primary">Notification Management</Typography>
         </Breadcrumbs>
-       <AddStationForm/>
+       <NotificationForm/>
       </div>
     </main>
   );

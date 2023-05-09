@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
-import { Input, Label, Select, Button,HelperText } from "@windmill/react-ui";
+import { Input, Label, Select, Button, HelperText, Checkbox } from "@windmill/react-ui";
 import { useHistory } from "react-router-dom";
 // import ProfileModal from "../Modals/ProfileModal";
 
@@ -15,6 +15,8 @@ const AddStationForm = () => {
             address: "",
             email: "",
             phoneNumber: "",
+            latitude: "",
+            longitude: "",
             connectorType: "",
             chargerType: "",
             capacity: "",
@@ -43,12 +45,12 @@ const AddStationForm = () => {
                 <div
             className="mb-4 align-middle space-x-3 "
             style={{ display: "flex", flexDirection: "row" }}
-          >
+              >
             <Label
               className="w-80"
               style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
             ><span>Name</span>
-            <Input className="mt-1" name="name" />
+            <Input className="mt-1" name="name"/>
               {/* <Field
                 className="mt-4"
                 as={Input}
@@ -112,13 +114,13 @@ const AddStationForm = () => {
           >
             <Label
               className="w-80"
-              style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
-            ><span>Available Connector Type</span>
-            <Input className="mt-1" name="connector_type" />
+              style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px", }}
+            > <span>Latitude</span>
+            <Input className="mt-1" name="latitude" />
               {/* <Field
                 className="mt-4"
                 as={Input}
-                name="connector_type"
+                name="email"
                 type="text"
                 // value={userData.Username}
                 // onChange={inputHandler}
@@ -127,12 +129,12 @@ const AddStationForm = () => {
             <Label
               className="w-80"
               style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
-            > <span>Available Charger Type</span>
-            <Input className="mt-1" name="charger_type" />
+            > <span>Longitude</span>
+            <Input className="mt-1" name="longitude" />
               {/* <Field
                 className="mt-4"
                 as={Input}
-                name="charger_type"
+                name="phone"
                 type="text"
                 // value={userData.Username}
                 // onChange={inputHandler}
@@ -146,33 +148,149 @@ const AddStationForm = () => {
             <Label
               className="w-80"
               style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
+            ><span>Available Connector Type</span>
+            <Select className="mt-1" name="connector_type">
+            <option value=""></option>
+            <option value="type1">AC Type 1</option>
+            <option value="type2">AC Type 2</option>
+            <option value="ccs">CCS 1</option>
+          </Select>
+            </Label>
+            <Label
+              className="w-80"
+              style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
+            > <span>Available Charger Type</span>
+            <Select className="mt-1" name="charger_type">
+            <option value=""></option>
+            <option value="all">All</option>
+            <option value="ac">AC</option>
+            <option value="dc">DC</option>
+          </Select>
+            </Label>
+          </div>
+          <div
+            className="mb-4 align-middle space-x-3 "
+            style={{ display: "flex", flexDirection: "row" }}
+          >
+            <Label
+              className="w-80"
+              style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
+            ><span>Name</span>
+            <Input className="mt-1" name="name" />
+            </Label>
+            <Label
+              className="w-80"
+              style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
+            ><span>Full Address</span>
+            <Input className="mt-1" name="address" />
+            </Label>
+          </div>
+          <div
+            className="mb-4 align-middle space-x-3 "
+            style={{ display: "flex", flexDirection: "row" }}
+          >
+            <Label
+              className="w-80"
+              style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
+            ><span>Email</span>
+            <Input className="mt-1" name="email" />
+            </Label>
+            <Label
+              className="w-80"
+              style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
+            ><span>Phone Number</span>
+            <Input className="mt-1" name="phoneNumber" />
+            </Label>
+          </div>
+          <div
+            className="mb-4 align-middle space-x-3 "
+            style={{ display: "flex", flexDirection: "row" }}
+          >
+            <Label
+              className="w-80"
+              style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
+            ><span>Latitude</span>
+            <Input className="mt-1" name="latitude" />
+            </Label>
+            <Label
+              className="w-80"
+              style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
+            ><span>Longitude</span>
+            <Input className="mt-1" name="longitude" />
+            </Label>
+          </div>
+          <div
+            className="mb-4 align-middle space-x-3 "
+            style={{ display: "flex", flexDirection: "row" }}
+          >
+            <Label
+              className="w-80"
+              style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
+            ><span>Available Connector Type</span>
+            <Select className="mt-1" name="connector_type">
+            <option value=""></option>
+            <option value="type1">AC Type 1</option>
+            <option value="type2">AC Type 2</option>
+            <option value="ccs">CCS 1</option>
+          </Select>
+            </Label>
+            <Label
+              className="w-80"
+              style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
+            > <span>Available Charger Type</span>
+            <Select className="mt-1" name="charger_type">
+            <option value=""></option>
+            <option value="all">All</option>
+            <option value="ac">AC</option>
+            <option value="dc">DC</option>
+          </Select>
+            </Label>
+          </div>
+          <div
+            className="mb-4 align-middle space-x-3 "
+            style={{ display: "flex", flexDirection: "row" }}
+          >
+            <Label
+              className="w-80"
+              style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
             ><span>Capacity</span>
             <Input className="mt-1" name="capacity" />
-              {/* <Field
-                className="mt-4"
-                as={Input}
-                name="capacity"
-                type="text"
-                // value={userData.Username}
-                // onChange={inputHandler}
-              /> */}
             </Label>
             <Label
               className="w-80"
               style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
             ><span>Tariff</span>
             <Input className="mt-1" name="tariff" />
-              {/* <Field
-                className="mt-4"
-                as={Input}
-                name="tariff"
-                type="text"
-                // value={userData.Username}
-                // onChange={inputHandler}
-              /> */}
             </Label>
-          </div>
-              
+          </div><br></br>
+          
+                  <div className="font-medium mb-1">Amenities</div>
+              <div>
+                <div class="mb-2">
+                  <Label check>
+                    <Input type="checkbox" name='1'/>
+                    <span className="ml-2">Parking</span> 
+                  </Label>
+                </div>
+                <div class="mb-2">
+                  <Label check>
+                    <Input type="checkbox" name='2'/>
+                    <span className="ml-2">Restroom</span>
+                  </Label>
+                </div>
+                <div class="mb-2">
+                  <Label check>
+                    <Input type="checkbox" name='3'/>
+                    <span className="ml-2">Hotel</span>
+                  </Label>
+                </div>
+                <div class="mb-2">
+                  <Label check>
+                    <Input type="checkbox" name='4'/>
+                    <span className="ml-2">Hospital</span>
+                  </Label>
+                </div>
+              </div>
               <div
             className="mb-4 align-right space-x-3 "
             style={{ display: "flex", flexDirection: "row", marginRight: "50px", position: "absolute",bottom: "50px", right: "200px" }}
@@ -211,7 +329,7 @@ const AddStationForm = () => {
               value="submit"
               
             >
-              Save
+              Add
             </Button>
           </div>
           </Form>
@@ -220,10 +338,5 @@ const AddStationForm = () => {
         </div>
     );
 };
-
-  
-  
-  
-            
 
 export default AddStationForm;

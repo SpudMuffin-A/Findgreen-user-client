@@ -22,6 +22,8 @@ const User = lazy(() => import('../pages/User'))
 const AddUser = lazy(() => import('../pages/AddUser'))
 const Role = lazy(() => import('../pages/Role'))
 const Addrole = lazy(() => import('../pages/AddRole'))
+const Notification = lazy(() => import('../pages/Notification'))
+const AddNotification = lazy(() => import('../pages/AddNotification'))
 
 /**
  * ⚠ These are internal routes!
@@ -61,6 +63,14 @@ const routes = [
   {
     path: '/addUser',
     component: AddUser,
+  },
+  {
+    path: '/notification',
+    component: Notification,
+  },  
+  {
+    path: '/addNotification',
+    component: AddNotification,
   },
   {
     path: '/role-management',

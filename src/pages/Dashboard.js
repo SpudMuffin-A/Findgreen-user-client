@@ -52,7 +52,9 @@ function Dashboard() {
     axios.get("http://172.174.202.43/find_green_admin_portal/v1/station/dashboard/").then((response) => {
         setTotalStations(response.data.stations['Total Charging Stations']);
         setActiveUsers(response.data.users['Active Users']);
-        setTotalHours(response.data.bookings[0]['Total Charging Duration']);
+        // setTotalHours(response.data.bookings[0]['Total Charging Duration']);
+        const totalDuration = response.data.bookings.reduce((acc, curr) => acc + parseInt(curr["Total Charging Duration"]), 0);
+        setTotalHours(totalDuration);
     });
     
   }, []);
