@@ -88,10 +88,12 @@ export default function MyBookingForm() {
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
     //   backgroundColor: "#3B7CFF",
-    backgroundColor: "rgba(0, 0, 256, 0.1)",
-      color: theme.palette.common.black,
+    backgroundColor: "rgba(135, 206, 250, 0.1)",
+      color: "#7B7B7B",
+      // color: theme.palette.common.black,
     },
     [`&.${tableCellClasses.body}`]: {
+      backgroundColor: "rgba(135, 206, 250, 0.1)",
       fontSize: 14,
      
     },
@@ -99,7 +101,8 @@ export default function MyBookingForm() {
   
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type()': {
-      backgroundColor: theme.palette.action.hover,
+      // backgroundColor: theme.palette.action.hover,
+      backgroundColor: "rgba(0, 0, 256, 0.09)",
     },
     // hide last border
     '&:last-child td, &:last-child th': {
@@ -139,26 +142,25 @@ export default function MyBookingForm() {
     </TableContainer>
       </TabPanel>
       <TabPanel value={value} index={1}>
-      <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table" style={{ border: '5px solid #333' }}>
+      <TableContainer component={Paper} style={{marginLeft: "-100px"}} sx={{ minWidth: 1000}}>
+      <Table sx={{ minWidth: 500}} aria-label="customized table" style={{ fontSize: '20px' }}>
         <TableHead >
           <TableRow >
-            <StyledTableCell style={{fontFamily:"Poppins",fontSize:"14pt"}}> Date & Time</StyledTableCell>
-            <StyledTableCell style={{fontFamily:"Poppins",fontSize:"14pt"}}align="left">Stations</StyledTableCell>
-            <StyledTableCell style={{fontFamily:"Poppins",fontSize:"14pt"}}align="left">Payment</StyledTableCell>
-            <StyledTableCell style={{fontFamily:"Poppins",fontSize:"14pt"}}align="left">Slot</StyledTableCell>
-            <StyledTableCell style={{fontFamily:"Poppins",fontSize:"14pt"}}align="left">Time</StyledTableCell>
-            <StyledTableCell style={{fontFamily:"Poppins",fontSize:"14pt"}}align="left">Action</StyledTableCell>
+            <StyledTableCell align="center" style={{fontFamily:"Poppins",fontSize:"14pt"}}>Charging Station ID</StyledTableCell>
+            <StyledTableCell align="center" style={{fontFamily:"Poppins",fontSize:"14pt"}}>Charging Station</StyledTableCell>
+            <StyledTableCell align="center" style={{fontFamily:"Poppins",fontSize:"14pt"}}>Weekly Revenue Generated</StyledTableCell>
+            <StyledTableCell align="center" style={{fontFamily:"Poppins",fontSize:"14pt"}}>Monthly Revenue Generated</StyledTableCell>
+            <StyledTableCell align="center" style={{fontFamily:"Poppins",fontSize:"14pt"}}>Annual Revenue Generated</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {cancelrows.map((row) => (
             <StyledTableRow >
-              <StyledTableCell align="left">{row.cs_id}</StyledTableCell>
-              <StyledTableCell align="left">{row.station}</StyledTableCell>
-              <StyledTableCell align="left">{row.weekly}</StyledTableCell>
-              <StyledTableCell align="left">{row.monthly}</StyledTableCell>
-              <StyledTableCell align="left">{row.yearly}</StyledTableCell>
+              <StyledTableCell align="center">{row.cs_id}</StyledTableCell>
+              <StyledTableCell align="center">{row.station}</StyledTableCell>
+              <StyledTableCell align="center">{row.weekly}</StyledTableCell>
+              <StyledTableCell align="center">{row.monthly}</StyledTableCell>
+              <StyledTableCell align="center">{row.yearly}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

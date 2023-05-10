@@ -104,14 +104,14 @@ export default function MyBookingForm() {
   };
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "rgba(0, 0, 256, 0.03)",
+      backgroundColor: "rgba(135, 206, 250, 0.1)",
       color: "#7B7B7B",
       fontFamily:"Sora",
 
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 14,
-      backgroundColor: "rgba(0, 0, 256, 0.03)",
+      backgroundColor: "rgba(135, 206, 250, 0.1)",
       borderColor: "#7B7B7B",
       color: "#000000",
       width:"200px",
@@ -132,32 +132,19 @@ export default function MyBookingForm() {
   return (
     <TabPanel value={value} index={0}>
     <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 2 }}>
-    {/* <Link to="/addStation">
-        <IconButton sx={{ bgcolor: "#3B7CFF", borderRadius: "15%", color: "white" }}>
-        <AddCircleIcon sx={{ color: "common.white" }} /> 
-        Add New Station
-        </IconButton>
-    </Link> */}
-    {/* <Button
-    component={Link}
-    to="/app/addStation"
-  color="primary"
-  disabled={false}
-  size="large"
-  variant="filledTonal"
-  fontFamily="Poppins">  + Add New Station </Button> */}
+
         <Fab variant="extended" size="medium" color="primary" aria-label="add" onClick={()=>{history.push({pathname:"/app/addUser"})}}>
         + Add User
       </Fab>
     </Box>
-    <TableContainer component={Paper}></TableContainer>
-    <Box sx={{ width: '100%' }} style ={{marginTop:"15px"}}>
-      <Box sx={{ border: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} textColor='primary' indicatorColor='primary'>
+    {/* <TableContainer component={Paper}></TableContainer> */}
+    {/* <Box sx={{ width: '100%' }} style ={{marginTop:"15px"}}> */}
+      {/* <Box sx={{ border: 1, borderColor: 'divider' }}> */}
+        {/* <Tabs value={value} onChange={handleChange} textColor='primary' indicatorColor='primary'> */}
           {/* <Tab label="Upcoming Bookings" {...a11yProps(0)}/> */}
           {/* <Tab label="Cancelled Bookings" {...a11yProps(1)} /> */}
-        </Tabs>
-      </Box>
+        {/* </Tabs> */}
+      {/* </Box> */}
       <TabPanel value={value} index={0} >
       <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table" >
@@ -166,11 +153,7 @@ export default function MyBookingForm() {
             <StyledTableCell style={{fontFamily:"Sora",fontSize:"16pt"}}> User Name</StyledTableCell>
             <StyledTableCell style={{fontFamily:"Sora",fontSize:"16pt"}}align="left">Role</StyledTableCell>
             <StyledTableCell style={{fontFamily:"Sora",fontSize:"16pt"}}align="left">Description</StyledTableCell>
-            {/* <StyledTableCell style={{fontFamily:"Sora",fontSize:"14pt"}}align="left">Email</StyledTableCell> */}
-            {/* <StyledTableCell style={{fontFamily:"Sora",fontSize:"14pt"}}align="left">Phone Number</StyledTableCell> */}
-            <StyledTableCell style={{fontFamily:"Sora",fontSize:"16pt"}}align="left">Status</StyledTableCell>
-            {/* <StyledTableCell style={{fontFamily:"Sora",fontSize:"14pt"}}align="left">Total Slots Booked</StyledTableCell> */}
-            
+            <StyledTableCell style={{fontFamily:"Sora",fontSize:"16pt"}}align="left">Status</StyledTableCell>            
           </TableRow>
         </TableHead>
         <TableBody>
@@ -217,7 +200,7 @@ export default function MyBookingForm() {
     </TableContainer>
       </TabPanel>
       
-    </Box>
+    {/* </Box> */}
     </TabPanel>
     // </TabPanel>
   );

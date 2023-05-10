@@ -76,14 +76,14 @@ export default function NotificationForm() {
   };
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "rgba(0, 0, 256, 0.03)",
+      backgroundColor: "rgba(135, 206, 250, 0.1)",
       color: "#7B7B7B",
       fontFamily:"Sora",
 
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 14,
-      backgroundColor: "rgba(0, 0, 256, 0.03)",
+      backgroundColor: "rgba(135, 206, 250, 0.1)",
       borderColor: "#7B7B7B",
       color: "#000000",
       width:"200px",

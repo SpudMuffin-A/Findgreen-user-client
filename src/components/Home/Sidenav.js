@@ -159,10 +159,10 @@ export default function Sidenav(props) {
           </ListItem>
         </List>
       </Drawer>
-      <Main open={open} sx={{ marginTop: 64 }}>
+      {/* <Main open={open} sx={{ marginTop: 64 }}> */}
         {/* <DrawerHeader /> */}
         
-      </Main>
+      {/* </Main> */}
       
     </Box>
     </div>

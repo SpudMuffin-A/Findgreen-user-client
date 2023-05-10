@@ -103,14 +103,16 @@ export default function MyBookingForm() {
   };
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "rgba(0, 0, 256, 0.03)",
+      backgroundColor: "rgba(135, 206, 250, 0.1)",
       color: "#7B7B7B",
       fontFamily:"Sora",
+      borderColor: "#7B7B7B",
+      fontSize: "18px",
 
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 14,
-      backgroundColor: "rgba(0, 0, 256, 0.03)",
+      backgroundColor: "rgba(135, 206, 250, 0.1)",
       borderColor: "#7B7B7B",
       color: "#000000",
       width:"200px",
@@ -150,13 +152,13 @@ export default function MyBookingForm() {
       </Fab>
     </Box>
     <TableContainer component={Paper}></TableContainer>
-    <Box sx={{ width: '100%' }} style ={{marginTop:"15px"}}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} textColor='primary' indicatorColor='primary'>
+    {/* <Box sx={{ width: '100%' }} style ={{marginTop:"15px"}}> */}
+      {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}> */}
+        {/* <Tabs value={value} onChange={handleChange} textColor='primary' indicatorColor='primary'> */}
           {/* <Tab label="Upcoming Bookings" {...a11yProps(0)}/> */}
           {/* <Tab label="Cancelled Bookings" {...a11yProps(1)} /> */}
-        </Tabs>
-      </Box>
+        {/* </Tabs> */}
+      {/* </Box> */}
       <TabPanel value={value} index={0} >
       <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table" >
@@ -210,7 +212,7 @@ export default function MyBookingForm() {
     </TableContainer>
       </TabPanel>
       
-    </Box>
+    {/* </Box> */}
     </TabPanel>
     // </TabPanel>
   );

@@ -27,24 +27,25 @@ const AddNotificationForm = () => {
             <h1>Add Notification</h1>
             <Formik 
             initialValues={{
-                // title: "",
-                // date: "",
-                // description: "",
+                title: "",
+                date: "",
+                description: "",
             }}
-            validate={(values) => {
-                const errors = {};
-                if (!values.title) {
-                    errors.title = "Required";
-                }
-                if (!values.date) {
-                    errors.date = "Required";
-                }
-                if (!values.description) {
-                    errors.description = "Required";
-                }
-                return errors;
-            }}
+            // validate={(values) => {
+            //     const errors = {};
+            //     if (!values.title) {
+            //         errors.title = "Required";
+            //     }
+            //     if (!values.date) {
+            //         errors.date = "Required";
+            //     }
+            //     if (!values.description) {
+            //         errors.description = "Required";
+            //     }
+            //     return errors;
+            // }}
             onSubmit={(values, { setSubmitting }) =>{
+                values.date = startDate;
                 setTimeout(() => {
                     alert(JSON.stringify(values, null, 2));
                     setSubmitting(false);
@@ -64,8 +65,8 @@ const AddNotificationForm = () => {
                         <Label className="w-80" 
                         style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}>
                             <span>Title</span>
-                            <Input className="mt-1" name="title" onChange={handleChange} value={message} /> 
-                            {/* <Field className="mt-4" as={Input} name="title" type="text" onChange={handleChange} value={message} /> */}
+                            {/* <Input className="mt-1" name="title" onChange={handleChange} value={message} />  */}
+                            <Field className="mt-4" as={Input} name="title" type="text" onChange={handleChange} value={message} />
                         </Label>
                         <Label className="w-80"
                         style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}>
@@ -76,6 +77,7 @@ const AddNotificationForm = () => {
                                 onChange={(date) => setStartDate(date)}
                                 customInput={<ExampleCustomInput />}
                                 todayButton="TODAY"
+                                name="date"
                             />
                         </Label>
                     </div>
@@ -90,49 +92,7 @@ const AddNotificationForm = () => {
                         <Textarea className="mt-1" name="description" />
                         </Label>
                     </div>  
-                    <div
-                    className="mb-4 align-middle space-x-3 "
-                    style={{ display: "flex", flexDirection: "row" }}
-                    >
-                        <Label
-                        className="w-full h-32"
-                        style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
-                        ><span>Description</span>
-                        <Textarea className="mt-1" name="description" />
-                        </Label>
-                    </div>  
-                    <div
-                    className="mb-4 align-middle space-x-3 "
-                    style={{ display: "flex", flexDirection: "row" }}
-                    >
-                        <Label
-                        className="w-full h-32"
-                        style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
-                        ><span>Description</span>
-                        <Textarea className="mt-1" name="description" />
-                        </Label>
-                        <Label className="w-80"
-                        style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}>
-                            <span>Date</span>
-                            <DatePicker
-                                selected={startDate}
-                                onChange={(date) => setStartDate(date)}
-                                customInput={<ExampleCustomInput />}
-                                todayButton="TODAY"
-                            />
-                        </Label>
-                    </div>  
-                    <div
-                    className="mb-4 align-middle space-x-3 "
-                    style={{ display: "flex", flexDirection: "row" }}
-                    >
-                        <Label
-                        className="w-full h-32"
-                        style={{ border: "1px", borderRadius: "10px", marginRight: "50px", width: "420px" }}
-                        ><span>Description</span>
-                        <Textarea className="mt-1" name="description" />
-                        </Label>
-                    </div>  
+                    
                     <div
             className="mb-4 align-right space-x-3 "
             style={{ display: "flex", flexDirection: "row", marginRight: "50px", position: "absolute",bottom: "50px", right: "200px" }}
@@ -149,8 +109,7 @@ const AddNotificationForm = () => {
                 height: "40px",
               }}
               className="mt-4"
-              
-              // onClick={handleClear}
+            //   onClick={handleClear}
               // type="button"
               >
               Cancel
@@ -169,9 +128,8 @@ const AddNotificationForm = () => {
               block
               type="submit"
               value="submit"
-              
             >
-              Save
+              Add
             </Button>
           </div>
                 </Form>
