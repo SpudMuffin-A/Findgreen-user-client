@@ -8,7 +8,7 @@ function Login() {
       <div className="md:w-1/2">
         <img
           aria-hidden="true"
-          className="object-cover w-full h-screen dark:hidden"
+          className="object-cover w-full h-screen"
           src={ImageLight}
           alt="Office"
         />
@@ -17,7 +17,7 @@ function Login() {
         <div className="w-full">
           <h3 className="text-xl">
             Log in.
-            <h1 className="mb-4 text-3xl font-semibold text-gray-700 dark:text-gray-200">
+            <h1 className="mb-4 text-3xl font-semibold text-gray-700">
             Welcome Back!
           </h1>
           </h3>
